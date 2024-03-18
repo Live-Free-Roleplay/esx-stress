@@ -82,15 +82,17 @@ end)
 Citizen.CreateThread(function()
     while true do
         Citizen.Wait(1)
-        TriggerEvent('esx_status:getStatus', 'stress', function(status)
-            StressVal = status.val
-        end)
-        
-        if StressVal >= 100000 then
-          TriggerServerEvent("stress:remove", 2000)
-          Citizen.Wait(500)
-        else
-          Citizen.Wait(15000)
+        if ESX ~= nil then
+            TriggerEvent('esx_status:getStatus', 'stress', function(status)
+                StressVal = status.val
+            end)
+            
+            if StressVal >= 100000 then
+            TriggerServerEvent("stress:remove", 2000)
+            Citizen.Wait(500)
+            else
+            Citizen.Wait(15000)
+            end
         end
     end
 end)
