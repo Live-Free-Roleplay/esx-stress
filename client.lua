@@ -86,7 +86,7 @@ Citizen.CreateThread(function()
             StressVal = status.val
         end)
         
-        if StressVal >= 0 then
+        if StressVal >= 100000 then
           TriggerServerEvent("stress:remove", 2000)
           Citizen.Wait(500)
         else
@@ -193,7 +193,7 @@ Citizen.CreateThread(function()--Crashing Vehicle
             if lastVehicleHealth and vehicleHealth < lastVehicleHealth then
                 local damage = lastVehicleHealth - vehicleHealth
                 if damage > 5 then -- Tweak this value to set the minimum threshold for a crash
-                    local stressAmount = damage * 500 -- Adjust the stress amount based on the damage received
+                    local stressAmount = damage * 2000 -- Adjust the stress amount based on the damage received
                     TriggerServerEvent("stress:add", stressAmount)
                 end
             end
