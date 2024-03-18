@@ -87,8 +87,8 @@ Citizen.CreateThread(function()
         end)
         
         if StressVal >= 0 then
-          TriggerServerEvent("stress:remove", 500)
-          Citizen.Wait(5000)
+          TriggerServerEvent("stress:remove", 2000)
+          Citizen.Wait(500)
         else
           Citizen.Wait(15000)
         end

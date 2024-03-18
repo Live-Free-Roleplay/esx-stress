@@ -6,7 +6,7 @@ AddEventHandler("stress:add", function (value)
     local xPlayer = ESX.GetPlayerFromId(_source)
     local playername = xPlayer.name
 
-    if xPlayer.job.name == "police" || xPlayer.job.name == "sheriff" then
+    if xPlayer.job.name == "police" or xPlayer.job.name == "sheriff" then
         -- If the player is a police officer, they gain half the stress.
         -- You can add different jobs using the same method here.
         TriggerClientEvent("esx_status:add", _source, "stress", value / 2) -- Use value / 2 instead of value / 10
