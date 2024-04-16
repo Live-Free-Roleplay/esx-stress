@@ -70,7 +70,7 @@ Citizen.CreateThread(function()
         elseif StressVal >= 350000 then
             Citizen.Wait(5500)
             ShakeGameplayCam('MEDIUM_EXPLOSION_SHAKE', 0.05)
-        elseif StressVal >= 30000 then
+        elseif StressVal >= 300000 then
             Citizen.Wait(6500)
             ShakeGameplayCam('MEDIUM_EXPLOSION_SHAKE', 0.03)
         else
