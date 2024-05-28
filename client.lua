@@ -105,7 +105,7 @@ Citizen.CreateThread(function() -- While shooting
         local silenced = IsPedCurrentWeaponSilenced(ped)
 
         if status and not silenced then
-            TriggerServerEvent("stress:add", 30000)
+            TriggerServerEvent("stress:add", 20000)
             Citizen.Wait(2000)
         else
             Citizen.Wait(1)
@@ -138,7 +138,7 @@ Citizen.CreateThread(function() -- Skydiving with parachute
         local status = GetPedParachuteState(ped)
 
         if status == 0 then -- freefall with chute (not falling without it)
-            TriggerServerEvent("stress:add", 60000)
+            TriggerServerEvent("stress:add", 40000)
             Citizen.Wait(5000)
         elseif status == 1 or status == 2 then -- opened chute
             TriggerServerEvent("stress:add", 5000)
@@ -155,7 +155,7 @@ Citizen.CreateThread(function() -- Stealth mode
         local status = GetPedStealthMovement(ped)
 
         if status then
-            TriggerServerEvent("stress:add", 10000)
+            TriggerServerEvent("stress:add", 8000)
             Citizen.Wait(8000)
         else
             Citizen.Wait(1) -- refresh rate
@@ -171,7 +171,7 @@ Citizen.CreateThread(function()--Driving over 100mph
         if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
             local speed = GetEntitySpeed(vehicle) * 2.23694 -- Convert speed from m/s to mph, 3.6 for kmh
             if speed > 100 then
-                TriggerServerEvent("stress:add", 5000) -- Adjust the stress amount as needed
+                TriggerServerEvent("stress:add", 3000) -- Adjust the stress amount as needed
                 Citizen.Wait(2000)
             end
         end
@@ -195,7 +195,7 @@ Citizen.CreateThread(function()--Crashing Vehicle
             if lastVehicleHealth and vehicleHealth < lastVehicleHealth then
                 local damage = lastVehicleHealth - vehicleHealth
                 if damage > 5 then -- Tweak this value to set the minimum threshold for a crash
-                    local stressAmount = damage * 2000 -- Adjust the stress amount based on the damage received
+                    local stressAmount = damage * 1000 -- Adjust the stress amount based on the damage received
                     TriggerServerEvent("stress:add", stressAmount)
                 end
             end
@@ -223,7 +223,7 @@ Citizen.CreateThread(function()--Sprinting Too Long
                 if sprinting then
                     local sprintTime = GetGameTimer() - sprintStartTime
                     if sprintTime >= sprintDuration then
-                        TriggerServerEvent("stress:add", 10000) -- Adjust the stress amount as needed
+                        TriggerServerEvent("stress:add", 7000) -- Adjust the stress amount as needed
                     end
                     sprinting = false
                 end
