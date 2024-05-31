@@ -180,7 +180,7 @@ Citizen.CreateThread(function()--Driving over 100mph
     end
 end)
 
-local lastVehicleHealth = 1000
+local lastVehicleHealth = {}
 
 Citizen.CreateThread(function()--Crashing Vehicle
     while true do
@@ -191,16 +191,17 @@ Citizen.CreateThread(function()--Crashing Vehicle
 
         if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
             local vehicleHealth = GetVehicleBodyHealth(vehicle)
+            local plate = GetVehicleNumberPlateText(vehicle)
 
-            if lastVehicleHealth and vehicleHealth < lastVehicleHealth then
-                local damage = lastVehicleHealth - vehicleHealth
+            if lastVehicleHealth[plate] and vehicleHealth < lastVehicleHealth[plate] then
+                local damage = lastVehicleHealth[plate] - vehicleHealth
                 if damage > 5 then -- Tweak this value to set the minimum threshold for a crash
                     local stressAmount = damage * 1000 -- Adjust the stress amount based on the damage received
                     TriggerServerEvent("stress:add", stressAmount)
                 end
             end
 
-            lastVehicleHealth = vehicleHealth
+            lastVehicleHealth[plate] = vehicleHealth
         end
     end
 end)
